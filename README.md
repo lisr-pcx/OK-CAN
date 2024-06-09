@@ -27,7 +27,8 @@ The **OK-CAN** software is licensed under the [MIT License](https://choosealicen
 
 ## TODO
 
--[ ] Import can trace decoder
--[ ] Add check and clean up the mess
--[ ] Fill documentation chapter
--[ ] Add bat for automatic 3-steps workflow (adapt trace log, decode trace, decode packet)
+- [ ] Import can trace decoder  
+- [ ] Add check and clean up the mess  
+- [ ] Fill documentation chapter  
+- [ ] Add bat for automatic 3-steps workflow (adapt trace log, decode trace, decode packet)  
+- [ ] Add JSON optional fields for decoded data conversion (string to numeric values)
