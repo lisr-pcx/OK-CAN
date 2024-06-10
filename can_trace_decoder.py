@@ -196,7 +196,7 @@ if __name__ == "__main__":
                     manage_can_segment(time_info, cob_hex_info, data_hex_info)
 
             print("Writing decoded packets...")
-            write_decoded_packets()                    
+            write_decoded_packets()
 
         print("End\n")
     else:

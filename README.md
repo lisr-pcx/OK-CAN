@@ -12,14 +12,23 @@ On Linux:
 python3 <SCRIPT NAME> --help
 ```
 
-### SCRIPT: can_packet_decoder.py
+**SCRIPT: can_trace_decoder.py**  
+To get a quick overview just run the sample files:
 
+On Linux:  
+```shell
+python3 can_trace_decoder.py sample_trace.csv
+```
+A new file containing decoded segments will be created (see sample_trace.csv.DECODED)
+
+**SCRIPT: can_packet_decoder.py**  
 To get a quick overview just run the sample files:
 
 On Linux:  
 ```shell
 python3 can_packet_decoder.py input.txt odometry_packet.json
 ```
+A new file containing decoded packets values will be created (see input.txt.DECODED)
 
 ## Licensing
 

@@ -141,6 +141,12 @@ import argparse
 import re
 import json
 from types import SimpleNamespace
+from collections import deque
+
+re_parsing_can_msg = r'^ *([0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}) *; *([0-9aAbBcCdDeEfF]{3}) *; *([0-9]{1,}) *; *([0-9]+) *; *([0-9aAbBcCdDeEfF]+) *$'
+
+# Store decoded packets
+packet_list = deque()
 
 class TerminalColors:
     BLUE = '\033[94m'
@@ -186,17 +192,17 @@ class CanMessage:
                 print("ERR: Invalid type (" + str(elem["type"]) + ") in JSON decoding. Stop decoding!")
                 break;            
 
-    def decode(self):
+    def Decode(self):
         # decode payload, byte after byte, based on JSON structure
         self.__decode_payload(self.decoding_structure, "")
 
-    def info(self):
-        print()
-        print(f"Packet: {self.datetime} {TerminalColors.CYAN}({self.cob_id_hex}){TerminalColors.END} {self.data_hex}")
-        print(f"Values (decoded):")
+    def Info(self):
+        info = f"Packet: {self.datetime} {TerminalColors.CYAN}({self.cob_id_hex}){TerminalColors.END} {self.data_hex}"
+        info = info + "\nValues:\n"
         for v in self.value:
-            print(f"{TerminalColors.GREEN}{str(v):>25} - {str(self.value[v]):<}{TerminalColors.END}")
-        print()
+            info = info + f"{TerminalColors.GREEN}{str(v):>25} - {str(self.value[v]):<}{TerminalColors.END}\n"
+        info = info + "\n\n"
+        return info
     
     def __init__(self, datetime: str, cob_id_hex: str, seq_num: int, len: int, data_hex: str, decoding_structure):
         self.datetime = str(decoded_values.group(1))
@@ -208,7 +214,11 @@ class CanMessage:
         self.decoding_index = 0 # byte index
         self.value = dict()
 
-re_parsing_can_msg = r'^ *([0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}) *; *([0-9aAbBcCdDeEfF]{3}) *; *([0-9]{1,}) *; *([0-9]+) *; *([0-9aAbBcCdDeEfF]+) *$'
+def write_decoded_packets():
+    output_file = open(arguments_list.datafilepath + ".DECODED", "w")
+    for elem in packet_list:
+        output_file.write(elem.Info() + "\n")
+    output_file.close() 
 
 def create_arg_parser():
     # Creates and returns the ArgumentParser object
@@ -276,8 +286,12 @@ if __name__ == "__main__":
                         if (json_msg_decode["max_length"] > 0 ) and (msg.len > json_msg_decode["max_length"]):
                             continue
 
-                        msg.decode()
-                        msg.info()
+                        msg.Decode()
+                        print(msg.Info())
+                        packet_list.append(msg)
+
+            print("Writing decoded packets...")
+            write_decoded_packets()
 
             print("End\n")
         else:
