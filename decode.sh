@@ -29,7 +29,7 @@ then
     python3 ./can_trace_decoder.py $1 > decode.sh.trace.log 2>&1
     if [ "$2" != "" ]
     then
-        python3 ./can_packet_decoder.py $1.TRACE.txt $2 > decode.sh.packet.log 2>&1
+        python3 ./can_packet_decoder.py $1.dt $2 > decode.sh.packet.log 2>&1
     fi
 fi
 

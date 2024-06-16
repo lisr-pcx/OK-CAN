@@ -48,7 +48,7 @@ byte 0      xxx-----        CS  Command Specifier
                                 010 : end segment
             ---xx---        SN  Serial Number of the segment (cyclic)
             -----000        For 'first' and 'middle' segment is always set to zero
-            -----xxx        For 'end' segment is the number of byte of data in the segment payload, 0..6
+            -----xxx        For 'end' segment is the number of byte of data in the segment payload, 0..7
 byte 1                      For 'first' segment is the Message number
 byte 1                      For 'middle' and 'end' segment contains payload
 byte 2..3                   For 'first' segment is the length of data
@@ -150,7 +150,7 @@ def manage_can_segment(time: str, cob: str, data: str):
         print("ERR: invalid CS for value " + CS_field)
 
 def write_decoded_packets():
-    output_file = open(arguments_list.tracefilepath + ".TRACE.txt", "w")
+    output_file = open(arguments_list.tracefilepath + ".dt", "w")
     for elem in packet_list:
         output_file.write(elem.Info() + "\n")
     output_file.close()   
@@ -195,7 +195,7 @@ if __name__ == "__main__":
 
                     manage_can_segment(time_info, cob_hex_info, data_hex_info)
 
-            print("Writing decoded packets into ...TRACE.txt")
+            print("Writing decoded packets into ...dt")
             write_decoded_packets()
 
         print("End\n")

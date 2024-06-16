@@ -143,7 +143,9 @@ import json
 from types import SimpleNamespace
 from collections import deque
 
-re_parsing_can_msg = r'^ *([0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}) *; *([0-9aAbBcCdDeEfF]{3}) *; *([0-9]{1,}) *; *([0-9]+) *; *([0-9aAbBcCdDeEfF]+) *$'
+re_parsing_can_msg = r'^ *([^;]*) *; *([0-9aAbBcCdDeEfF]{3}) *; *([0-9]{1,}) *; *([0-9]+) *; *([0-9aAbBcCdDeEfF]+) *$'
+# for any date format use: r'^ *([^;]*) *;'
+# for specific date format use: r'^ *([0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}) *;'
 
 # Store decoded packets
 packet_list = deque()
@@ -215,7 +217,7 @@ class CanMessage:
         self.value = dict()
 
 def write_decoded_packets():
-    output_file = open(arguments_list.datafilepath + ".PACKET.txt", "w")
+    output_file = open(arguments_list.datafilepath + ".dp", "w")
     for elem in packet_list:
         output_file.write(elem.Info() + "\n")
     output_file.close() 
@@ -290,7 +292,7 @@ if __name__ == "__main__":
                         print(msg.Info())
                         packet_list.append(msg)
 
-            print("Writing decoded packets into ...PACKET.txt")
+            print("Writing decoded packets into ...dp")
             write_decoded_packets()
 
             print("End\n")
