@@ -160,7 +160,7 @@ def create_arg_parser():
     parser = argparse.ArgumentParser(
                         prog='python3 can_trace_decoder.py',
                         description='Decode CAN trace extracting packets of each COB id.',
-                        epilog='This is free software and it comes with absolutely no warranty.')
+                        epilog='This script is part of OK-CAN utilities (MIT license) and it comes with absolutely no warranty.')
     parser.add_argument('tracefilepath',
                         type=str,
                         help='Path to CAN trace')

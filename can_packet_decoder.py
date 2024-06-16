@@ -27,7 +27,7 @@ Example:
 
 TAB.1
 +----------+---------------+----------+-------------------+----------------------------------------+
-| Position | name          | Size     | Range and Units   | Description                            |
+| Position | Name          | Size     | Range and Units   | Description                            |
 |----------|---------------|----------|-------------------|----------------------------------------|
 | 0        | CODE          | 1 byte   | enumerative       | 00 : ack                               |
 |          |               |          |                   | 01 : sensor status                     |
@@ -47,7 +47,7 @@ TAB.1
 
 TAB.2 (Data groups)
 +------------+---------------+----------+-------------------+--------------------------------------+
-| Position   | name          | Size     | Range and Units   | Description                          |
+| Position   | Name          | Size     | Range and Units   | Description                          |
 | (relative) |               |          |                   |                                      |
 |------------|---------------|----------|-------------------|--------------------------------------|
 | 0          | POSITION      | 2bytes   | -5000 .. +5000 Km | Object position                      |
@@ -235,7 +235,7 @@ def create_arg_parser():
     # Creates and returns the ArgumentParser object
     parser = argparse.ArgumentParser(
                         prog='python3 can_packet_decoder.py',
-                        description='Generic can decoder.',
+                        description='Decode CAN messages into application packets based on JSON description.',
                         epilog='This script is part of OK-CAN utilities (MIT license) and it comes with absolutely no warranty.')
     parser.add_argument('datafilepath',
                         type=str,
