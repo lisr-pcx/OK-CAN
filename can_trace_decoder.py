@@ -78,7 +78,7 @@ re_parsing_data_hex = r'^"(' + re_basic_hex + '{2}) \
 # Store decoded packets
 packet_list = deque()
 
-# store in-progress packets because composed of multiple segments
+# store in-progress packets (when multiple segments)
 # (key is the COB)
 packet_in_progress_list = dict()
 
@@ -158,7 +158,7 @@ def write_decoded_packets():
 def create_arg_parser():
     # Creates and returns the ArgumentParser object
     parser = argparse.ArgumentParser(
-                        prog='python can_trace_decoder.py',
+                        prog='python3 can_trace_decoder.py',
                         description='Decode CAN trace extracting packets of each COB id.',
                         epilog='This is free software and it comes with absolutely no warranty.')
     parser.add_argument('tracefilepath',
@@ -195,7 +195,7 @@ if __name__ == "__main__":
 
                     manage_can_segment(time_info, cob_hex_info, data_hex_info)
 
-            print("Writing decoded packets into ...dt")
+            print("Writing decoded packets into .dt file")
             write_decoded_packets()
 
         print("End\n")

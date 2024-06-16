@@ -1,43 +1,66 @@
 # OK-CAN
 
-**O**verrated **K**it for CAN bus management.  
-Just a collection of scripts for packets decoding, analysis ...
+**O**verrated **K**it for CAN bus analysis.  
+Just a collection of scripts mainly for decoding and related stuff ...
+
+## How to run
+
+Please download or clone locally the repository.
+
+For decoding a CAN trace just to run the *decode* script via Linux shell or Windows prompt, passing the filepath and (optionally) the JSON file which describes the structure of the packet.
+
+On Linux:  
+```shell
+./decode.sh TRACE_FILE JSON_PKT_DESCRIPTION
+```
+
+At the end of the decoding process two files will be created:
+ - **TRACE_FILE.dt**: the list of decode messages obtained from trace
+ - **TRACE_FILE.dt.dp**: the list of decode packets, based on JSON description
+
+## Demo
+
+A sample CAN trace and JSON description is also provided as example.  
+Run the command below:
+
+```shell
+./decode.sh sample_trace.csv odometry_packet.json
+```
 
 ## Documentation
 
-For command line usage and option please refer to *man page* of the script:
+**TODO** explain workflow
 
-On Linux:  
+Detailed comments are provide on the source code. Please read them carefully before apply any change.
+
+For command line usage and options refer to *help page*:
+
 ```shell
 python3 <SCRIPT NAME> --help
 ```
 
-**SCRIPT: can_trace_decoder.py**  
-To get a quick overview just run the sample files:
+### can_trace_decoder.py
 
-On Linux:  
-```shell
-python3 can_trace_decoder.py sample_trace.csv
-```
-A new file containing decoded segments will be created (see sample_trace.csv.DECODED)
+**TODO** show usage
 
-**SCRIPT: can_packet_decoder.py**  
-To get a quick overview just run the sample files:
+As output of the process a new file containing decoded segments will be created with extension .dt (it means **d**ecoded **t**race) on the same directory.
 
-On Linux:  
-```shell
-python3 can_packet_decoder.py input.txt odometry_packet.json
-```
-A new file containing decoded packets values will be created (see input.txt.DECODED)
+### can_packet_decoder.py
+
+**TODO** show usage
+
+As output of the process a new file containing decoded packets will be created with extension .dp (it means **d**ecoded **p**ackets) on the same directory.
 
 ## Licensing
 
-The **OK-CAN** software is licensed under the [MIT License](https://choosealicense.com/licenses/mit/). Please refer to LICENSE file for details.
+The **OK-CAN** software is licensed under the [MIT License](https://choosealicense.com/licenses/mit/).  
+Please refer to LICENSE file for further details.
 
 ## TODO
 
-- [ ] Import can trace decoder  
-- [ ] Add check and clean up the mess  
 - [ ] Fill documentation chapter  
-- [ ] Add bat for automatic 3-steps workflow (adapt trace log, decode trace, decode packet)  
-- [ ] Add JSON optional fields for decoded data conversion (string to numeric values)
+- [ ] Add conversion from generic sample trace format to your specific
+- [ ] Move python scripts into dedicated folder
+- [x] Add JSON structure for decoding
+- [ ] Add JSON field-data conversion (make it optional)
+- [ ] Add conversion from ODBC to your generic JSON (maybe next year..)
