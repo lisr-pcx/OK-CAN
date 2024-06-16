@@ -215,7 +215,7 @@ class CanMessage:
         self.value = dict()
 
 def write_decoded_packets():
-    output_file = open(arguments_list.datafilepath + ".DECODED", "w")
+    output_file = open(arguments_list.datafilepath + ".PACKET.txt", "w")
     for elem in packet_list:
         output_file.write(elem.Info() + "\n")
     output_file.close() 
@@ -290,7 +290,7 @@ if __name__ == "__main__":
                         print(msg.Info())
                         packet_list.append(msg)
 
-            print("Writing decoded packets...")
+            print("Writing decoded packets into ...PACKET.txt")
             write_decoded_packets()
 
             print("End\n")

@@ -150,7 +150,7 @@ def manage_can_segment(time: str, cob: str, data: str):
         print("ERR: invalid CS for value " + CS_field)
 
 def write_decoded_packets():
-    output_file = open(arguments_list.tracefilepath + ".DECODED", "w")
+    output_file = open(arguments_list.tracefilepath + ".TRACE.txt", "w")
     for elem in packet_list:
         output_file.write(elem.Info() + "\n")
     output_file.close()   
@@ -195,7 +195,7 @@ if __name__ == "__main__":
 
                     manage_can_segment(time_info, cob_hex_info, data_hex_info)
 
-            print("Writing decoded packets...")
+            print("Writing decoded packets into ...TRACE.txt")
             write_decoded_packets()
 
         print("End\n")

@@ -15,6 +15,8 @@
 #   decode.sh.trace.log
 #   decode.sh.packet.log
 #
+# Please make sure to have Python 3.x installed on your system
+#
 # Note: to make executable permission, run the following chmod command:
 # $ chmod -v +x decode.sh
 
