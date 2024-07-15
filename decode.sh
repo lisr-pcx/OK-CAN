@@ -32,10 +32,10 @@ echo ""
 if [ "$1" != "" ] 
 then
     echo "Start..."
-    python3 ./code/can_trace_decoder.py $1 > ./logs/dt.log 2>&1
+    python3 ./code/can_trace_decoder.py $1 > dt.log 2>&1
     if [ "$2" != "" ]
     then
-        python3 ./code/can_packet_decoder.py $1.dt $2 > ./logs/dp.log 2>&1
+        python3 ./code/can_packet_decoder.py $1.dt $2 > dp.log 2>&1
     fi
 fi
 

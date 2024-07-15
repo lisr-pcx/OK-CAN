@@ -14,6 +14,11 @@ On Linux:
 ./decode.sh <TRACE FILE> <JSON PKT DESCRIPTION>
 ```
 
+On Windows:  
+```dos
+.\decode.bat <TRACE FILE> <JSON PKT DESCRIPTION>
+```
+
 At the end of the decoding process two files will be created:
  - **<TRACE FILE>.dt**: the list of decode traces
  - **<TRACE FILE>.dt.dp**: the list of decode packets, based on JSON description
@@ -197,5 +202,6 @@ Please refer to LICENSE file for further details.
 
 - [x] Add conversion from generic sample trace
 - [x] Add JSON structure for decoding
+- [ ] Manage endianess
 - [ ] Add JSON field-data conversion (make it optional)
 - [ ] Add conversion from ODBC to your generic JSON (maybe next year..)
