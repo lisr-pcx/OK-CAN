@@ -65,7 +65,8 @@ from collections import deque
 
 re_basic_hex = "[0-9aAbBcCdDeEfF]"
 re_basic_hex_with_spaces = "[0-9aAbBcCdDeEfF ]"
-re_parsing_can_trace = r'^"(.*)","(' + re_basic_hex + '{3})","(.*)","(.*)","(' + re_basic_hex_with_spaces + '{23})"$'
+re_separator = ","
+re_parsing_can_trace = r'^"(.*)"' + re_separator + '"(' + re_basic_hex + '{3})"' + re_separator + '"(.*)"' + re_separator + '"(.*)"' + re_separator + '"(' + re_basic_hex_with_spaces + '{23})"$'
 re_parsing_data_hex = r'^"(' + re_basic_hex + '{2}) \
                           (' + re_basic_hex + '{2}) \
                           (' + re_basic_hex + '{2}) \
