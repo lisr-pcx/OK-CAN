@@ -7,7 +7,7 @@ Just a collection of scripts mainly for decoding and related stuff ...
 
 Please download or clone locally the repository.
 
-For decoding a CAN trace just to run the *decode* script via Linux shell or Windows prompt, passing the filepath and (optionally) the JSON file which describes the structure of the packet.
+For decoding a CAN trace just to run the *decode* script via Linux shell or Windows prompt, passing the filepath of CAN raw traces and (optionally) the JSON file which describes the structure of the packet.
 
 On Linux:  
 ```shell
@@ -15,7 +15,7 @@ On Linux:
 ```
 
 At the end of the decoding process two files will be created:
- - **<TRACE FILE>.dt**: the list of decode messages obtained from trace
+ - **<TRACE FILE>.dt**: the list of decode traces
  - **<TRACE FILE>.dt.dp**: the list of decode packets, based on JSON description
 
 ## Demo
@@ -24,7 +24,7 @@ A sample CAN trace and JSON description is also provided as example.
 Run the command below:
 
 ```shell
-./decode.sh sample_trace.csv odometry_packet.json
+./decode.sh sample_trace.csv sample_odometry_packet.json
 ```
 
 ## Documentation
